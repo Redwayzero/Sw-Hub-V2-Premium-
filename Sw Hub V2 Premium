@@ -1,0 +1,472 @@
+--blacklist
+
+local Player = game.Players.LocalPlayer
+local BlackList = Player.UserId
+ 
+local list = {
+   
+}
+ 
+for _, id in ipairs(list) do
+    if BlackList == id then
+        game.Players.LocalPlayer:Kick("BlackListed")
+        break 
+    end
+end
+ 
+ 
+
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/thanhdat4461/OrionMoblie/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Sw Hub v2", HidePremium = false,IntroText = "Welcome" , SaveConfig = true, ConfigFolder = "Sw hub v2"})
+
+
+
+--Values 
+
+_G.autoStrength = true  
+
+_G.autoDurability = true 
+
+_G.autoChakra = true 
+
+_G.autoSword = true 
+
+_G.autoAgility = true 
+
+_G.autoJump = true 
+
+
+--Function 
+
+function autoStrength()
+    while _G.autoStrength == true do
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Strength")
+     end     
+   end
+
+function autoDurability()
+    while _G.autoDurability == true do 
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Durability")
+     end
+   end 
+
+
+function autoChakra()
+    while _G.autoChakra == true do 
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Chakra")
+     end 
+   end 
+
+function autoSword()
+    while _G.autoSword == true do 
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Sword")
+     end  
+   end 
+
+function autoAgility()
+    while _G.autoAgility == true do 
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Speed")
+     end 
+   end 
+
+function autoJump()
+    while _G.autoJump == true do 
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Agility")
+     end  
+   end 
+
+
+
+--Tabs 
+
+local StatsTab = Window:MakeTab({
+	Name = "Auto Stats",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local OpTab = Window:MakeTab({
+	Name = "Op Stuff",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local TeleportTab = Window:MakeTab({
+	Name = "Teleport",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local MiscTab = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local CreditTab = Window:MakeTab({
+	Name = "Credits",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local PremiumTab = Window:MakeTab({
+	Name = "Premium",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+
+--Labels
+
+ StatsTab:AddParagraph("Important","For Some auto scripts to work you have to equip the stat slot for that certain stat for it to work (The Auto Stats work but it wont show in your stats menu because its a bit laggy and annoying with the popups and also dont worry if you leave the game the stats save so you can then rejoin for it to refresh)")
+ 
+ 
+ 
+ OpTab:AddParagraph("Important","Dont spam the buttons because you either crash or lag a lot(Just wait after you use the script once)")
+ 
+ OpTab:AddParagraph("Important","Faster stats doesn't mean it will give massive amounts of stats like in one go instead it makes training the stats faster by a little bit")
+ 
+ MiscTab:AddParagraph("Important","Use Unlock Gamepasses to get Faster flight")
+ 
+ TeleportTab:AddParagraph("Important","Press the button once and wait 10-20 seconds for you to teleport")
+ 
+ CreditTab:AddLabel("Created by Auren/zero")
+ 
+ CreditTab:AddLabel("Contact (auren_the_absolute) on discord for help")
+ 
+ CreditTab:AddParagraph("More Credits","Thanks for lucus for the help with some parts of the script and also he let me use Es hub source code and helped with the Loadstring and teleport tab)")
+
+
+--Toggles 
+
+StatsTab:AddToggle({
+	Name = "Auto Strength",
+	Default = false,
+	Callback = function(Value)
+		_G.autoStrength = Value
+		autoStrength()
+	end    
+})
+
+StatsTab:AddToggle({
+	Name = "Auto Durability",
+	Default = false,
+	Callback = function(Value)
+		_G.autoDurability = Value
+		autoDurability()
+	end    
+})
+
+StatsTab:AddToggle({
+	Name = "Auto Chakra",
+	Default = false,
+	Callback = function(Value)
+		_G.autoChakra = Value
+		autoChakra()
+	end    
+})
+
+StatsTab:AddToggle({
+	Name = "Auto Sword",
+	Default = false,
+	Callback = function(Value)
+		_G.autoSword = Value
+		autoSword()
+	end    
+})
+
+StatsTab:AddToggle({
+	Name = "Auto Agility",
+	Default = false,
+	Callback = function(Value)
+		_G.autoAgility = Value
+		autoAgility()
+	end    
+})
+
+StatsTab:AddToggle({
+	Name = "Auto Jump",
+	Default = false,
+	Callback = function(Value)
+		_G.autoJump = Value
+		autoJump()
+	end    
+})
+
+
+
+--Buttons 
+
+OpTab:AddButton({
+	Name = "Faster Strength",
+	Callback = function()
+      		local replicatedStorage = game:GetService("ReplicatedStorage")
+local events = replicatedStorage:WaitForChild("RSPackage"):WaitForChild("Events")
+
+local function invokeServerFunction(stat, value)
+    events.StatFunction:InvokeServer(stat, value)
+end
+
+local stat = "Stat"
+local value = "Strength"
+
+while true do
+    invokeServerFunction(stat, value)
+end
+	end
+})
+
+
+
+OpTab:AddButton({
+	Name = "Faster Durability",
+	Callback = function()
+      		local replicatedStorage = game:GetService("ReplicatedStorage")
+local events = replicatedStorage:WaitForChild("RSPackage"):WaitForChild("Events")
+
+local function invokeServerFunction(stat, value)
+    events.StatFunction:InvokeServer(stat, value)
+end
+
+local stat = "Stat"
+local value = "Durability"
+
+while true do
+    invokeServerFunction(stat, value)
+end
+	end
+})
+
+
+
+OpTab:AddButton({
+	Name = "Faster Chakra",
+	Callback = function()
+      		local replicatedStorage = game:GetService("ReplicatedStorage")
+local events = replicatedStorage:WaitForChild("RSPackage"):WaitForChild("Events")
+
+local function invokeServerFunction(stat, value)
+    events.StatFunction:InvokeServer(stat, value)
+end
+
+local stat = "Stat"
+local value = "Chakra"
+
+while true do
+    invokeServerFunction(stat, value)
+end
+	end
+})
+
+
+
+OpTab:AddButton({
+	Name = "Faster Sword",
+	Callback = function()
+      		local replicatedStorage = game:GetService("ReplicatedStorage")
+local events = replicatedStorage:WaitForChild("RSPackage"):WaitForChild("Events")
+
+local function invokeServerFunction(stat, value)
+    events.StatFunction:InvokeServer(stat, value)
+end
+
+local stat = "Stat"
+local value = "Sword"
+
+while true do
+    invokeServerFunction(stat, value)
+end
+	end
+})
+
+
+
+
+OpTab:AddButton({
+	Name = "Massive Chakra",
+	Callback = function()
+      		local replicated = game:GetService('ReplicatedStorage')
+ 
+ 
+ 
+coroutine.wrap(function()
+ 
+for i = 1,100000 do -- do howerver much you want
+ 
+task.spawn(function()
+ 
+    replicated.RSPackage.Events.StatFunction:InvokeServer('Stat', 'Chakra')
+ 
+end)
+ 
+end
+ 
+end)()
+ 
+ 
+  	end    
+})
+
+
+
+
+
+MiscTab:AddButton({
+	Name = "Unlock Gamepasses",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/Blue-v3rm/blue-s-stuff/master/AFS.lua"))()
+  	end    
+})
+
+
+
+OpTab:AddButton({
+	Name = "Inf Yen/Chikra(Dungeon only)",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptpastebin/raw/main/animefightingsimulator"))()
+  	end    
+})
+
+
+MiscTab:AddButton({
+	Name = "Anti Afk",
+	Callback = function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringypVvhJBq4QNz", true))()
+	end  		
+})		
+
+
+MiscTab:AddButton({
+	Name = "Infinite yield",
+	Callback = function()
+      		loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+  	end    
+})
+
+MiscTab:AddButton({
+	Name = "Turtle Spy",
+	Callback = function()
+      		loadstring(game:HttpGet("https://pastebin.com/raw/BDhSQqUU", true))()
+	end  		
+})
+
+MiscTab:AddButton({
+	Name = "Other Gui(Credit's to septex) ",
+	Callback = function()
+      		loadstring(game:HttpGet(('https://raw.githubusercontent.com/XTheMasterX/Scripts/Main/AnimeFightingSim'),true))()
+  	end    
+})
+
+--Premium
+
+
+
+
+
+
+
+    		
+  		
+--Teleport Buttons 
+
+
+TeleportTab:AddButton({
+	Name = "Dimension 1",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(4042427666, game.Players.LocalPlayer)
+  	end    
+})
+
+
+
+TeleportTab:AddButton({
+	Name = "Dimension 2",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(5113678354, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Dimension 3",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(5113680396, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Dimension 4",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(5445525505, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Dimension 5",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(6479720355, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Dimension 6",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(9386500519, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Dungeon 1",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(7220975160, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Dungeon 2",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(7220986579, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Dimension Tournament",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(5445504800, game.Players.LocalPlayer)
+  	end    
+})
+
+
+TeleportTab:AddButton({
+	Name = "Chapter 1: BossFight",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(6479693773, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Akaza: BossFight",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(7220992373, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Rimumu: BossFight",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(8436368941, game.Players.LocalPlayer)
+  	end    
+})
+
+TeleportTab:AddButton({
+	Name = "Easter: BossFight",
+	Callback = function()
+		 game:GetService("TeleportService"):Teleport(6652048822, game.Players.LocalPlayer)
+  	end    
+})
+
+

@@ -425,7 +425,7 @@ local function setMaxHealth(player, maxHealth)
 end
 
 -- Define the desired maximum health value
-local newMaxHealth = 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+local newMaxHealth = nil
 
 -- Wait for the LocalPlayer's character to exist before setting the max health
 while not LocalPlayer.Character do

@@ -411,6 +411,12 @@ MiscTab:AddButton({
 
 --Premium
 
+PremiumTab:AddButton({
+    Name = "God Mode",
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/zephyr10101/ignore-touchinterests/main/main",true))()
+    end 
+})
 
 
 

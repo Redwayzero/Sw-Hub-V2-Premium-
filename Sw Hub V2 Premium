@@ -414,8 +414,36 @@ MiscTab:AddButton({
 PremiumTab:AddButton({
     Name = "God Mode",
     Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/zephyr10101/ignore-touchinterests/main/main",true))()
-    end 
+       local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function setMaxHealth(player, maxHealth)
+    if player and player.Character and player.Character:FindFirstChild("Humanoid") then
+        player.Character.Humanoid.MaxHealth = maxHealth
+    end
+end
+
+-- Define the desired maximum health value
+local newMaxHealth = 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+-- Wait for the LocalPlayer's character to exist before setting the max health
+while not LocalPlayer.Character do
+    LocalPlayer.CharacterAdded:wait()
+end
+
+-- Set the max health immediately if the character already exists
+setMaxHealth(LocalPlayer, newMaxHealth)
+
+-- Update max health on character respawn
+LocalPlayer.CharacterAdded:Connect(function(character)
+    setMaxHealth(LocalPlayer, newMaxHealth)
+end)
+
+-- Listen for RenderStepped event to ensure the script stays alive
+RunService.RenderStepped:wait()
+
+    end
 })
 
 

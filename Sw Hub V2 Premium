@@ -411,21 +411,21 @@ MiscTab:AddButton({
 
 --Premium
 
-PremiumTab:AddButton({
-    Name = "God Mode",
-    Callback = function()
-       local RunService = game:GetService("RunService")
+ PremiumTab:AddButton({
+	Name = "Other Gui(Credit's to septex) ",
+	Callback = function()
+      		local RunService = game:GetService("RunService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
-local function setMaxHealth(player, maxHealth)
+local function setHealthToMax(player)
     if player and player.Character and player.Character:FindFirstChild("Humanoid") then
-        player.Character.Humanoid.MaxHealth = maxHealth
+        player.Character.Humanoid.Health = player.Character.Humanoid.MaxHealth
     end
 end
 
 -- Define the desired maximum health value
-local newMaxHealth = nil
+local newMaxHealth = 1000000
 
 -- Wait for the LocalPlayer's character to exist before setting the max health
 while not LocalPlayer.Character do
@@ -433,19 +433,28 @@ while not LocalPlayer.Character do
 end
 
 -- Set the max health immediately if the character already exists
-setMaxHealth(LocalPlayer, newMaxHealth)
+setHealthToMax(LocalPlayer)
 
--- Update max health on character respawn
+-- Update health to max on character respawn
 LocalPlayer.CharacterAdded:Connect(function(character)
-    setMaxHealth(LocalPlayer, newMaxHealth)
+    setHealthToMax(LocalPlayer)
 end)
 
--- Listen for RenderStepped event to ensure the script stays alive
-RunService.RenderStepped:wait()
+-- Listen for RenderStepped event to keep setting health to max
+RunService.RenderStepped:Connect(function()
+    setHealthToMax(LocalPlayer)
+end)
 
-    end
+-- Additional: You can also prevent the player from taking damage
+local function onTakingDamage(damage, attacker)
+    return 0 -- Return 0 to prevent any damage
+end
+
+LocalPlayer.Character.Humanoid.TakingDamage:Connect(onTakingDamage)
+
+  	end    
 })
-
+ 
 
 
 

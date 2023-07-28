@@ -411,49 +411,44 @@ MiscTab:AddButton({
 
 --Premium 
 
+PremiumTab:AddParagraph("Important","Its Important to know these scripts are still in testing meaning they might not work or may not even run but they are gonna get fixed")
+
+
+
 PremiumTab:AddButton({
     Name = "God Mode",
     Callback = function()
-        -- Unkillable God Mode Script for Anime Fighting Simulator
-
-local Players = game:GetService("Players")
+        local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
--- Function to make the player invincible
-local function godMode()
+-- Function to make the player invincible and resistant to damage
+local function godMode(resistanceFactor)
     local humanoid = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid")
     if humanoid then
         humanoid.MaxHealth = math.huge
         humanoid.Health = math.huge
+
+        humanoid.TakingDamage:Connect(function(damage, attacker)
+            -- Modify the damage taken based on the resistance factor
+            local reducedDamage = damage * resistanceFactor
+            humanoid.Health = humanoid.Health - reducedDamage
+        end)
     end
 end
 
--- Enable God Mode
-godMode()
-
--- Prevent the player from dying
-local function onTakingDamage(damage, attacker)
-    return 0
-end
-
--- Override the Humanoid's TakeDamage method to prevent death
-local humanoidMeta = getrawmetatable(game.Players.LocalPlayer.Character.Humanoid)
-local originalTakeDamage = humanoidMeta.__index.TakeDamage
-
-humanoidMeta.__index.TakeDamage = function(humanoid, ...)
-    if humanoid.Health - ... <= 0 then
-        return 0
-    end
-    return originalTakeDamage(humanoid, ...)
-end
+-- Set the resistance factor to 0.1 (takes 10% of the original damage)
+local resistanceFactor = 1
+godMode(resistanceFactor)
 
 -- Loop to continuously set the player's health to max
 while true do
     wait(1)
-    godMode()
+    godMode(resistanceFactor)
 end
     end
 })
+
+
 
 PremiumTab:AddButton({
     Name = "Godly Massive Chakra",

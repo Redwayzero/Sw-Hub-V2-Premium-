@@ -409,71 +409,37 @@ MiscTab:AddButton({
   	end    
 })
 
---Premium
+--Premium 
 
- PremiumTab:AddButton({
-	Name = "God Mode(In the middle of being made)",
-	Callback = function()
-      		 local Players = game:GetService("Players")
+PremiumTab:AddButton({
+    Name = "God Mode",
+    Callback = function()
+     -- God Mode Script for Anime Fighting Simulator
+
+local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
-local function setHealthToMax(player)
-    if player and player.Character and player.Character:FindFirstChild("Humanoid") then
-        player.Character.Humanoid.Health = player.Character.Humanoid.MaxHealth
+-- Function to make the player invincible
+local function godMode()
+    local humanoid = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid")
+    if humanoid then
+        humanoid.MaxHealth = math.huge
+        humanoid.Health = math.huge
     end
 end
 
--- Define the desired maximum health value
-local newMaxHealth = 1000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000100000010000001000000
+-- Enable God Mode
+godMode()
 
--- Function to heal the player to full health
-local function healPlayer()
-    if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
-        LocalPlayer.Character.Humanoid.Health = LocalPlayer.Character.Humanoid.MaxHealth
-    end
-end
-
--- Wait for the LocalPlayer's character to exist before setting the max health
-while not LocalPlayer.Character do
-    LocalPlayer.CharacterAdded:wait()
-end
-
--- Set the max health immediately if the character already exists
-setHealthToMax(LocalPlayer)
-
--- Update health to max on character respawn
-LocalPlayer.CharacterAdded:Connect(function(character)
-    setHealthToMax(LocalPlayer)
-end)
-
--- Listen for RenderStepped event to keep setting health to max
-game:GetService("RunService").RenderStepped:Connect(function()
-    setHealthToMax(LocalPlayer)
-end)
-
--- Additional: You can also prevent the player from taking damage
-local function onTakingDamage(damage, attacker)
-    return 0 -- Return 0 to prevent any damage
-end
-
-LocalPlayer.Character.Humanoid.TakingDamage:Connect(onTakingDamage)
-
--- Add a button press to heal the player manually
-local Orion = loadstring(game:HttpGet("https://raw.githubusercontent.com/DevKiaru/Orion/main/lib.lua"))()
-
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-local button = Orion:Button("Heal", function()
-    healPlayer()
-end)
-
-button.Position = UDim2.new(0.5, 0, 0.9, 0)
-button.AnchorPoint = Vector2.new(0.5, 0.5)
-button.Size = UDim2.new(0, 150, 0, 50)
-
-	end
+-- Loop to continuously set the player's health to max
+while true do
+    wait(1)
+    godMode()
+end   
+    end    
 })
+ 
+
 
 
     		

@@ -414,7 +414,7 @@ MiscTab:AddButton({
 PremiumTab:AddButton({
     Name = "God Mode",
     Callback = function()
-     -- God Mode Script for Anime Fighting Simulator
+        -- Unkillable God Mode Script for Anime Fighting Simulator
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -431,13 +431,30 @@ end
 -- Enable God Mode
 godMode()
 
+-- Prevent the player from dying
+local function onTakingDamage(damage, attacker)
+    return 0
+end
+
+-- Override the Humanoid's TakeDamage method to prevent death
+local humanoidMeta = getrawmetatable(game.Players.LocalPlayer.Character.Humanoid)
+local originalTakeDamage = humanoidMeta.__index.TakeDamage
+
+humanoidMeta.__index.TakeDamage = function(humanoid, ...)
+    if humanoid.Health - ... <= 0 then
+        return 0
+    end
+    return originalTakeDamage(humanoid, ...)
+end
+
 -- Loop to continuously set the player's health to max
 while true do
     wait(1)
     godMode()
-end   
-    end    
+end
+    end
 })
+ 
  
 
 

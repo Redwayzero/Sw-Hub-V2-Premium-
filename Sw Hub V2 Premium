@@ -461,25 +461,25 @@ PremiumTab:AddButton({
       local replicated = game:GetService('ReplicatedStorage')
 local statFunction = replicated.RSPackage.Events.StatFunction
 
-local function invokeChakra()
-    while true do -- Use an infinite loop to continuously invoke the function
+local function invokeChakra(amount)
+    for i = 1, amount do
         statFunction:InvokeServer('Stat', 'Chakra')
     end
 end
 
 coroutine.wrap(function()
-    for i = 1, 50 do -- Increase the number of iterations to invoke the infinite loop function more times
-        task.spawn(invokeChakra) -- Use task.spawn once for the entire function
-    end
+    task.spawn(function()
+        invokeChakra(500000) -- Increase the amount to grant an even more god-like chakra boost
+    end)
 end)()
 
 -- You can customize the outer loops for lag, but be cautious as higher iterations may cause significant lag
-for i = 1, 100 do
-    for j = 1, 100 do
-        for k = 1, 1000 do
+for i = 1, 5 do -- Reduce the number of iterations to reduce lag further
+    for j = 1, 5 do -- Reduce the number of iterations to reduce lag further
+        for k = 1, 50 do -- Reduce the number of iterations to reduce lag further
         end
     end
-end  
+end
     end
 })
 

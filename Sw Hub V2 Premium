@@ -456,30 +456,32 @@ end
 })
 
 PremiumTab:AddButton({
-    Name = "Improved Massive Chakra",
+    Name = "Godly Massive Chakra",
     Callback = function()
       local replicated = game:GetService('ReplicatedStorage')
 local statFunction = replicated.RSPackage.Events.StatFunction
 
 local function invokeChakra()
-    for i = 1, 10000 do -- Increase the number of iterations to give more chakra
+    while true do -- Use an infinite loop to continuously invoke the function
         statFunction:InvokeServer('Stat', 'Chakra')
     end
 end
 
 coroutine.wrap(function()
-    task.spawn(invokeChakra) -- Use task.spawn once for the entire function
+    for i = 1, 50 do -- Increase the number of iterations to invoke the infinite loop function more times
+        task.spawn(invokeChakra) -- Use task.spawn once for the entire function
+    end
 end)()
 
--- You can customize the loop iterations for lag, but keep in mind that it might affect the chakra given
-for i = 1, 100 do -- Adjust as needed, higher iterations may cause more lag
-    for j = 1, 100 do -- Adjust as needed, higher iterations may cause more lag
-        for k = 1, 500 do -- Adjust as needed, higher iterations may cause more lag
+-- You can customize the outer loops for lag, but be cautious as higher iterations may cause significant lag
+for i = 1, 100 do
+    for j = 1, 100 do
+        for k = 1, 1000 do
         end
     end
 end  
     end
- })
+})
 
 
 
